@@ -32,7 +32,6 @@ set(SOURCES
     src/banks/santanderBank.cpp
     src/bank.cpp
     src/bankFactory.cpp
-    src/main.cpp
 )
 
 # Header files
@@ -44,7 +43,7 @@ set(HEADERS
 )
     
 
-add_executable(${PROJECT_NAME}
+add_library(${PROJECT_NAME} STATIC
     ${HEADERS}
     ${SOURCES}
 )
@@ -53,7 +52,8 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
     PROJECT_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
-target_include_directories(${PROJECT_NAME} PRIVATE
+target_include_directories(${PROJECT_NAME} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${qxlsx_SOURCE_DIR}/QXlsx/header
 )
 

@@ -93,7 +93,7 @@ QDateTime Bank::castQDateTime(const QString& dateString){
 bool Bank::uploadDataToDataBase(QSqlDatabase db, const QString& nameTable) {
     readBankMovements();
     QSqlQuery query(db);
-    const QString instructionQuery = QString("INSERT INTO {} (date, amount, category, account, description) "
+    const QString instructionQuery = QString("INSERT INTO %1 (date, amount, category, account, description) "
             "VALUES (:date, :amount, :category, :account, :description)").arg(nameTable);
 
     for(auto& t : transactions){
@@ -108,8 +108,8 @@ bool Bank::uploadDataToDataBase(QSqlDatabase db, const QString& nameTable) {
         if (!query.exec()) {
             qDebug() << "[insertTransaction] ERROR:" << query.lastError().text();
             return false;
-        }
-        qDebug() << "[insertTransaction] Operation successful!";
+        }  
     }
+    qDebug() << "[insertTransaction] Operation successful!";
     return true;
 }       

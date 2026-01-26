@@ -106,7 +106,7 @@ QList<Bank::Transaction> SantanderBank::readBankMovements(const QString& filePat
                 t.amount = QString::number(xlsx.read(row, 5).toInt());
             }
 
-            t.account = QString("%1 %2 card").arg(nameBank).arg(typeAccount);
+            t.account = QString("%1 %2").arg(nameBank).arg(typeAccount);
 
             qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
             transactionsList.append(t);

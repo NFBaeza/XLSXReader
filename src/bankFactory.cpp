@@ -29,3 +29,17 @@ std::unique_ptr<Bank> BankFactory::create(const QString& bankName, const QString
     qDebug() << "Banco no soportado:" << bankName;
     return nullptr;
 }
+
+std::unique_ptr<Bank> BankFactory::create(const QString& bankName, const QString& accountType, const QString& filePath) {
+    QString name = bankName.toUpper();
+
+    if (name == "BICE") {
+        return std::make_unique<BiceBank>(accountType, filePath);
+    }
+    else if (name == "SANTANDER") {
+         return std::make_unique<SantanderBank>(accountType, filePath);
+    }
+
+    qDebug() << "Banco no soportado:" << bankName;
+    return nullptr;
+}

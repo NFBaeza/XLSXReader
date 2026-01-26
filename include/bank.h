@@ -1,5 +1,5 @@
-#ifndef DATABASEMANAGER_H
-#define DATABASEMANAGER_H
+#ifndef BANKMANAGER_H
+#define BANKMANAGER_H
 
 #include <QCoreApplication>
 #include "xlsxdocument.h"
@@ -17,7 +17,6 @@
     Q_OBJECT
 
     protected:
-        // Struct accesible para clases hijas
         struct Transaction {
             QDateTime date;
             QString category;
@@ -48,4 +47,4 @@
 
 };
 
-#endif // DATABASEMANAGER_H
+#endif // BANKMANAGER_H

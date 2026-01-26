@@ -15,6 +15,8 @@ public:
     static std::unique_ptr<Bank> create(BankType type, const QString& accountType);
 
     static std::unique_ptr<Bank> create(const QString& bankName, const QString& accountType);
+
+    static std::unique_ptr<Bank> create(const QString& bankName, const QString& accountType, const QString& filePath);
 };
 
 #endif // BANKFACTORY_H
