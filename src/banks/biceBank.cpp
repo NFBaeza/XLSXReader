@@ -27,7 +27,7 @@ QList<Bank::Transaction> BiceBank::readBankMovements(const QString& filePath) {
             QString fullDescription = xlsx.read(row, 5).toString();
             if (!fullDescription.isEmpty()) {
                 Transaction t;
-                t.date = castQDateTime(fullDescription);
+                t.date = castQDateTime(fullDescription).toString("yyyy-MM-dd hh:mm:ss");
                 t.category = xlsx.read(row, 3).toString();
                 t.description = fullDescription;
                 t.description.remove(QRegularExpression("\\s*(el\\s*)?\\d{1,2}/\\d{1,2}/\\d{4}"));
@@ -67,7 +67,7 @@ bool BiceBank::readBankMovements() {
             QString fullDescription = xlsx.read(row, 5).toString();
             if (!fullDescription.isEmpty()) {
                 Transaction t;
-                t.date = castQDateTime(fullDescription);
+                t.date = castQDateTime(fullDescription).toString("yyyy-MM-dd hh:mm:ss");
                 t.category = xlsx.read(row, 3).toString();
                 t.description = fullDescription;
                 t.description.remove(QRegularExpression("\\s*(el\\s*)?\\d{1,2}/\\d{1,2}/\\d{4}"));

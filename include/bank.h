@@ -18,7 +18,7 @@
 
     protected:
         struct Transaction {
-            QDateTime date;
+            QString date;
             QString category;
             QString account;
             QString amount;
@@ -42,7 +42,6 @@
         QString typeAccount;
         QString filePath;
         void printBankFile(const QString& filePath);
-        bool uploadDataToDataBase(QSqlDatabase db, const QString& nameTable);
         virtual QList<Transaction> readBankMovements(const QString& filePath) = 0;
 
 };

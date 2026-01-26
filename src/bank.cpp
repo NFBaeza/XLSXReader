@@ -87,29 +87,4 @@ QDateTime Bank::castQDateTime(const QString& dateString){
     }
 
     return QDateTime(date, time);
-}   
-
-
-bool Bank::uploadDataToDataBase(QSqlDatabase db, const QString& nameTable) {
-    readBankMovements();
-    QSqlQuery query(db);
-    const QString instructionQuery = QString("INSERT INTO %1 (date, amount, category, account, description) "
-            "VALUES (:date, :amount, :category, :account, :description)").arg(nameTable);
-
-    for(auto& t : transactions){
-        query.prepare(instructionQuery);
-    
-        query.bindValue(":date", t.date);
-        query.bindValue(":amount", t.amount);
-        query.bindValue(":category", t.category);
-        query.bindValue(":account", t.account);
-        query.bindValue(":description", t.description);
-
-        if (!query.exec()) {
-            qDebug() << "[insertTransaction] ERROR:" << query.lastError().text();
-            return false;
-        }  
-    }
-    qDebug() << "[insertTransaction] Operation successful!";
-    return true;
-}       
+}     

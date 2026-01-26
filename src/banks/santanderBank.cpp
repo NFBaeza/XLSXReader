@@ -38,7 +38,7 @@ bool SantanderBank::readBankMovements() {
         } else {
             Transaction t;
             QString date = QString("%1/%2").arg(xlsx.read(row,1).toString()).arg(year);
-            t.date = castQDateTime(date);
+            t.date = castQDateTime(date).toString("yyyy-MM-dd hh:mm:ss");
             
             t.description = xlsx.read(row, 3).toString();
             t.description.remove(QRegularExpression("\\d{10}"));
@@ -52,7 +52,7 @@ bool SantanderBank::readBankMovements() {
                 t.amount = QString::number(xlsx.read(row, 5).toInt());
             }
 
-            t.account = QString("%1 %2 card").arg(nameBank).arg(typeAccount);
+            t.account = QString("%1 %2").arg(nameBank).arg(typeAccount);
 
             qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
             transactions.append(t);
@@ -92,7 +92,7 @@ QList<Bank::Transaction> SantanderBank::readBankMovements(const QString& filePat
         } else {
             Transaction t;
             QString date = QString("%1/%2").arg(xlsx.read(row,1).toString()).arg(year);
-            t.date = castQDateTime(date);
+            t.date = castQDateTime(date).toString("yyyy-MM-dd hh:mm:ss");
             
             t.description = xlsx.read(row, 3).toString();
             t.description.remove(QRegularExpression("\\d{10}"));
