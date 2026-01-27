@@ -45,10 +45,10 @@ bool SantanderBank::readBankMovements() {
             t.description = t.description.trimmed();
 
             if(xlsx.read(row, 5).toString().isNull()){
-                t.category = "Cargo";
+                t.category = "Abono";
                 t.amount = QString::number(xlsx.read(row, 6).toInt());
             }else{
-                t.category = "Abono";
+                t.category = "Cargo";
                 t.amount = QString::number(xlsx.read(row, 5).toInt());
             }
 

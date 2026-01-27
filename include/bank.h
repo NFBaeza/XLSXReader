@@ -25,12 +25,7 @@
             QString description;
         };
 
-        QList<Transaction> transactions;
-
         QDateTime castQDateTime(const QString& dateString);
-
-        virtual bool readBankMovements() = 0;
-
         void printBankFile();
 
     public:
@@ -41,8 +36,10 @@
         QString nameBank;
         QString typeAccount;
         QString filePath;
+        QList<Transaction> transactions;
         void printBankFile(const QString& filePath);
         virtual QList<Transaction> readBankMovements(const QString& filePath) = 0;
+        virtual bool readBankMovements() = 0;
 
 };
 

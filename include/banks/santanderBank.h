@@ -11,10 +11,7 @@ public:
     SantanderBank(const QString& type, const QString& filePath);
     ~SantanderBank() = default;
 
-    QList<Transaction> readBankMovements(const QString& filePath) override;
-
-protected:
-   
+    QList<Transaction> readBankMovements(const QString& filePath) override; 
     bool readBankMovements() override;
 };
 

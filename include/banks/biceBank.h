@@ -11,8 +11,6 @@ public:
     BiceBank(const QString& type, const QString& filePath);
     ~BiceBank() = default;
     QList<Transaction> readBankMovements(const QString& filePath) override;
-
-protected:
     bool readBankMovements() override;
 };
 
