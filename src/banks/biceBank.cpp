@@ -68,7 +68,7 @@ bool BiceBank::readBankMovements() {
             if (!fullDescription.isEmpty()) {
                 Transaction t;
                 t.date = castQDateTime(fullDescription).toString("yyyy-MM-dd hh:mm:ss");
-                t.category = xlsx.read(row, 3).toString();
+                t.category = xlsx.read(row, 3).toString().toLower();
                 t.description = fullDescription;
                 t.description.remove(QRegularExpression("\\s*(el\\s*)?\\d{1,2}/\\d{1,2}/\\d{4}"));
                 t.description.remove(QRegularExpression("\\s*(a las\\s*)?\\d{1,2}:\\d{2}\\s*(hrs\\.?)?"));

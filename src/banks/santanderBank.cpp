@@ -52,7 +52,7 @@ bool SantanderBank::readBankMovements() {
                 t.amount = QString::number(xlsx.read(row, 5).toInt());
             }
 
-            t.account = QString("%1 %2").arg(nameBank).arg(typeAccount);
+            t.account = QString("%1 %2 card").arg(nameBank).arg(typeAccount);
 
             qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
             transactions.append(t);
@@ -99,10 +99,10 @@ QList<Bank::Transaction> SantanderBank::readBankMovements(const QString& filePat
             t.description = t.description.trimmed();
 
             if(xlsx.read(row, 5).toString().isNull()){
-                t.category = "Cargo";
+                t.category = "cargos";
                 t.amount = QString::number(xlsx.read(row, 6).toInt());
             }else{
-                t.category = "Abono";
+                t.category = "abonos";
                 t.amount = QString::number(xlsx.read(row, 5).toInt());
             }
 
