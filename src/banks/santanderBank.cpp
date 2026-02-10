@@ -45,16 +45,16 @@ bool SantanderBank::readBankMovements() {
             t.description = t.description.trimmed();
 
             if(xlsx.read(row, 5).toString().isNull()){
-                t.category = "Abono";
+                t.category = "abonos";
                 t.amount = QString::number(xlsx.read(row, 6).toInt());
             }else{
-                t.category = "Cargo";
+                t.category = "cargos";
                 t.amount = QString::number(xlsx.read(row, 5).toInt());
             }
 
             t.account = QString("%1 %2 card").arg(nameBank).arg(typeAccount);
 
-            qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
+            //qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
             transactions.append(t);
             
             row++;

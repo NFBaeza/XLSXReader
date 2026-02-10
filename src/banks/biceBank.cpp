@@ -40,7 +40,7 @@ QList<Bank::Transaction> BiceBank::readBankMovements(const QString& filePath) {
                 t.amount = xlsx.read(row, 6).toString().split("$")[1].replace(".","");
                 t.account = QString("%1 %2").arg(nameBank).arg(typeAccount);
 
-                qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
+                //qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
                 transactionsList.append(t);
             }
             row++;
