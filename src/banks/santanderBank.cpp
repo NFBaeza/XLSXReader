@@ -41,20 +41,19 @@ bool SantanderBank::readBankMovements() {
             t.date = castQDateTime(date).toString("yyyy-MM-dd hh:mm:ss");
             
             t.description = xlsx.read(row, 3).toString();
+            t.category = m_classifier.classify(t.description);
             t.description.remove(QRegularExpression("\\d{10}"));
             t.description = t.description.trimmed();
 
             if(xlsx.read(row, 5).toString().isNull()){
-                t.category = "abonos";
                 t.amount = QString::number(xlsx.read(row, 6).toInt());
             }else{
-                t.category = "cargos";
                 t.amount = QString::number(xlsx.read(row, 5).toInt());
             }
 
             t.account = QString("%1 %2 card").arg(nameBank).arg(typeAccount);
 
-            //qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
+            qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
             transactions.append(t);
             
             row++;
@@ -95,20 +94,19 @@ QList<Bank::Transaction> SantanderBank::readBankMovements(const QString& filePat
             t.date = castQDateTime(date).toString("yyyy-MM-dd hh:mm:ss");
             
             t.description = xlsx.read(row, 3).toString();
+            t.category = m_classifier.classify(t.description);
             t.description.remove(QRegularExpression("\\d{10}"));
             t.description = t.description.trimmed();
 
             if(xlsx.read(row, 5).toString().isNull()){
-                t.category = "cargos";
                 t.amount = QString::number(xlsx.read(row, 6).toInt());
             }else{
-                t.category = "abonos";
                 t.amount = QString::number(xlsx.read(row, 5).toInt());
             }
 
             t.account = QString("%1 %2").arg(nameBank).arg(typeAccount);
 
-            //qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
+            qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
             transactionsList.append(t);
             
             row++;

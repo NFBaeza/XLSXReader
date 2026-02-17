@@ -8,9 +8,11 @@ int main(int argc, char *argv[]) {
 
     // Opción 2: 
     auto bank = BankFactory::create("Santander", "debit");
+    //se recomenda el uso de ruta global
+    const QString filePathGlobal ="../files/Cartola de cuenta Corriente - Febrero 2022.xlsx"; 
 
     if (bank) {
-        bank->readBankMovements("../files/santander_carlola_julio.xlsx");
+        bank->readBankMovements(filePathGlobal);
         qDebug() << bank->nameBank;
     }
 

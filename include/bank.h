@@ -3,6 +3,7 @@
 
 #include <QCoreApplication>
 #include "xlsxdocument.h"
+#include "simpleClassifier.h"
 #include <QSqlDatabase>
 #include <QSqlTableModel>
 #include <QSqlRelationalTableModel>
@@ -27,6 +28,9 @@
 
         QDateTime castQDateTime(const QString& dateString);
         void printBankFile();
+
+        SimpleClassifier m_classifier;
+
 
     public:
         Bank(const QString& name, const QString& type);

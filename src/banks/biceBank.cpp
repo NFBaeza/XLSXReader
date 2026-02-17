@@ -28,7 +28,7 @@ QList<Bank::Transaction> BiceBank::readBankMovements(const QString& filePath) {
             if (!fullDescription.isEmpty()) {
                 Transaction t;
                 t.date = castQDateTime(fullDescription).toString("yyyy-MM-dd hh:mm:ss");
-                t.category = xlsx.read(row, 3).toString();
+                t.category = m_classifier.classify(fullDescription);
                 t.description = fullDescription;
                 t.description.remove(QRegularExpression("\\s*(el\\s*)?\\d{1,2}/\\d{1,2}/\\d{4}"));
                 t.description.remove(QRegularExpression("\\s*(a las\\s*)?\\d{1,2}:\\d{2}\\s*(hrs\\.?)?"));
@@ -40,7 +40,7 @@ QList<Bank::Transaction> BiceBank::readBankMovements(const QString& filePath) {
                 t.amount = xlsx.read(row, 6).toString().split("$")[1].replace(".","");
                 t.account = QString("%1 %2").arg(nameBank).arg(typeAccount);
 
-                //qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
+                qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
                 transactionsList.append(t);
             }
             row++;
@@ -68,7 +68,7 @@ bool BiceBank::readBankMovements() {
             if (!fullDescription.isEmpty()) {
                 Transaction t;
                 t.date = castQDateTime(fullDescription).toString("yyyy-MM-dd hh:mm:ss");
-                t.category = xlsx.read(row, 3).toString().toLower();
+                t.category = m_classifier.classify(fullDescription);
                 t.description = fullDescription;
                 t.description.remove(QRegularExpression("\\s*(el\\s*)?\\d{1,2}/\\d{1,2}/\\d{4}"));
                 t.description.remove(QRegularExpression("\\s*(a las\\s*)?\\d{1,2}:\\d{2}\\s*(hrs\\.?)?"));
@@ -80,7 +80,7 @@ bool BiceBank::readBankMovements() {
                 t.amount = xlsx.read(row, 6).toString().split("$")[1].replace(".","");
                 t.account = QString("%1 %2 card").arg(nameBank).arg(typeAccount);
 
-                //qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
+                qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
                 transactions.append(t);
             }
             row++;

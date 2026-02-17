@@ -32,14 +32,16 @@ set(SOURCES
     src/banks/santanderBank.cpp
     src/bank.cpp
     src/bankFactory.cpp
+    src/simpleClassifier.cpp
 )
 
 # Header files
 set(HEADERS
+    include/simpleClassifier.h
     include/banks/biceBank.h
     include/banks/santanderBank.h
     include/bank.h
-    include/bankFactory.h
+    include/bankFactory.h 
 )
     
 
@@ -57,9 +59,21 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${qxlsx_SOURCE_DIR}/QXlsx/header
 )
 
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Sql
     Qt6::Core
     Qt6::Gui
+    QXlsx
+)
+
+# Test executable
+add_executable(test_xlsxreader main.cpp)
+
+target_link_libraries(test_xlsxreader PRIVATE
+    ${PROJECT_NAME}
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Sql
     QXlsx
 )
