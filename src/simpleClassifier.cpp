@@ -9,7 +9,7 @@ void SimpleClassifier::initRules() {
     // Order matters: first match wins
 
     // --- Supermercados ---
-    m_rules.append({QRegularExpression("lider|walmart|unimarc|liquimax|laicao|Homecenter|hiper|(?<!ali)\\bexpress\\b|jumbo|tottus|(santa|sta)\\s*isabel|acuenta|ekono|mayorista\\s*10", QRegularExpression::CaseInsensitiveOption), "groceries"});
+    m_rules.append({QRegularExpression("lider|walmart|unimarc|liquimax|laicao|Homecenter|hiper|(?<!ali)\\bexpress\\b|jumbo|tottus|(santa|sta)\\s*isabel|acuenta|esencia\\s*vegana|ekono|mayorista\\s*10", QRegularExpression::CaseInsensitiveOption), "groceries"});
 
     // --- Farmacias ---
     m_rules.append({QRegularExpression("farmacias?\\s*(ahumada|cruz\\s*verde|salcobrand|knop|dr\\.?\\s*simi)|fasa|cruzverde", QRegularExpression::CaseInsensitiveOption), "drugstore"});
@@ -21,7 +21,7 @@ void SimpleClassifier::initRules() {
     m_rules.append({QRegularExpression("copec|shell|petrobras|enex|gasolinera|combustible|estacion\\s*de\\s*servicio", QRegularExpression::CaseInsensitiveOption), "gas"});
 
     // --- Restaurantes / Comida ---
-    m_rules.append({QRegularExpression("mcdonald|burger\\s*king|starbucks|papa\\s*john|domino|Dunkin|subway|kfc|juan\\s*maestro|tarragona|pizza|rappi|pedidos\\s*ya|uber\\s*eats|cornershop|ifood|doggis|restauran", QRegularExpression::CaseInsensitiveOption), "delivery"});
+    m_rules.append({QRegularExpression("mcdonald|burger\\s*king|starbucks|papa\\s*john|domino|Dunkin|subway|kfc|juan\\s*maestro|tarragona|pizza|rappi|pedidos\\s*ya|uber\\s*eats|cornershop|ifood|doggis|restauran", QRegularExpression::CaseInsensitiveOption), "delivery/eating out"});
 
     // --- Servicios basicos ---
     m_rules.append({QRegularExpression("enel|chilquinta|cge|aguas\\s*andinas|esval|essbio|entel|movistar|Telefónica|claro|wom|vtr|mundo\\s*pacifico|gtd|telsur|metrogas|gas\\s*natural|lipigas|abastible", QRegularExpression::CaseInsensitiveOption), "utilities"});

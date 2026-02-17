@@ -9,6 +9,7 @@ WiseBank::WiseBank(const QString& type, const QString& filePath)
 }
 
 bool WiseBank::readBankMovements(){
+    transactions.clear();
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Error: No se pudo abrir el archivo:" << filePath;
@@ -16,7 +17,7 @@ bool WiseBank::readBankMovements(){
     }
 
     QTextStream stream(&file);
-    QRegularExpression dateRegex("(\\d{1,4})");
+    stream.readLine(); 
 
     while (!stream.atEnd()) {
         Transaction t;
@@ -31,7 +32,7 @@ bool WiseBank::readBankMovements(){
         t.account = QString("%1 %2").arg(nameBank).arg(typeAccount);
 
         qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
-            
+        transactions.append(t);
     }
     return true;
 }
