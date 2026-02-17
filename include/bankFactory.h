@@ -10,9 +10,13 @@ public:
     enum class BankType {
         BICE,
         SANTANDER,
+        WISE,
+        UNKNOWN
     };
 
     static std::unique_ptr<Bank> create(BankType type, const QString& accountType);
+
+    static BankType fromString(const QString& bankName);
 
     static std::unique_ptr<Bank> create(const QString& bankName, const QString& accountType);
 

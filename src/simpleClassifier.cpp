@@ -9,22 +9,22 @@ void SimpleClassifier::initRules() {
     // Order matters: first match wins
 
     // --- Supermercados ---
-    m_rules.append({QRegularExpression("lider|walmart|unimarc|hiper|(?<!ali)\\bexpress\\b|jumbo|tottus|(santa|sta)\\s*isabel|acuenta|ekono|mayorista\\s*10", QRegularExpression::CaseInsensitiveOption), "supermarket"});
+    m_rules.append({QRegularExpression("lider|walmart|unimarc|liquimax|laicao|Homecenter|hiper|(?<!ali)\\bexpress\\b|jumbo|tottus|(santa|sta)\\s*isabel|acuenta|ekono|mayorista\\s*10", QRegularExpression::CaseInsensitiveOption), "groceries"});
 
     // --- Farmacias ---
     m_rules.append({QRegularExpression("farmacias?\\s*(ahumada|cruz\\s*verde|salcobrand|knop|dr\\.?\\s*simi)|fasa|cruzverde", QRegularExpression::CaseInsensitiveOption), "drugstore"});
 
     // --- Transporte ---
-    m_rules.append({QRegularExpression("uber|cabify|didi|beat|tur\\s*bus|bip!?|metro\\s*s\\.?a|recarga\\s*bip", QRegularExpression::CaseInsensitiveOption), "transport"});
+    m_rules.append({QRegularExpression("efe|uber|cabify|didi|beat|Condor|tur\\s*bus|bip!?|metro\\s*s\\.?a|recarga\\s*bip", QRegularExpression::CaseInsensitiveOption), "transport"});
 
     // --- Combustible ---
     m_rules.append({QRegularExpression("copec|shell|petrobras|enex|gasolinera|combustible|estacion\\s*de\\s*servicio", QRegularExpression::CaseInsensitiveOption), "gas"});
 
     // --- Restaurantes / Comida ---
-    m_rules.append({QRegularExpression("mcdonald|burger\\s*king|starbucks|papa\\s*john|domino|subway|kfc|juan\\s*maestro|tarragona|pizza|rappi|pedidos\\s*ya|uber\\s*eats|cornershop|ifood|doggis|restauran", QRegularExpression::CaseInsensitiveOption), "delivery"});
+    m_rules.append({QRegularExpression("mcdonald|burger\\s*king|starbucks|papa\\s*john|domino|Dunkin|subway|kfc|juan\\s*maestro|tarragona|pizza|rappi|pedidos\\s*ya|uber\\s*eats|cornershop|ifood|doggis|restauran", QRegularExpression::CaseInsensitiveOption), "delivery"});
 
     // --- Servicios basicos ---
-    m_rules.append({QRegularExpression("enel|chilquinta|cge|aguas\\s*andinas|esval|essbio|entel|movistar|claro|wom|vtr|mundo\\s*pacifico|gtd|telsur|metrogas|gas\\s*natural|lipigas|abastible", QRegularExpression::CaseInsensitiveOption), "utilities"});
+    m_rules.append({QRegularExpression("enel|chilquinta|cge|aguas\\s*andinas|esval|essbio|entel|movistar|Telefónica|claro|wom|vtr|mundo\\s*pacifico|gtd|telsur|metrogas|gas\\s*natural|lipigas|abastible", QRegularExpression::CaseInsensitiveOption), "utilities"});
 
     // --- Salud ---
     m_rules.append({QRegularExpression("clinica|hospital|isapre|fonasa|colmena|consalud|banmedica|vida\\s*tres|megasalud|integramedica|red\\s*salud|dental|optica|laboratorio", QRegularExpression::CaseInsensitiveOption), "healtcare"});
@@ -39,7 +39,7 @@ void SimpleClassifier::initRules() {
     m_rules.append({QRegularExpression("aliexpress|alibaba|\\btemu\\b|\\bshein\\b|\\bwish\\b|banggood|gearbest|dhgate", QRegularExpression::CaseInsensitiveOption), "online shopping"});
 
     // --- Retail / Tiendas ---
-    m_rules.append({QRegularExpression("falabella|ripley|paris|la\\s*polar|hites|abcdin|sodimac|homecenter|easy|construmart|imperial|corona|ikea|amazon|mercadolibre|merpago|mercado\\s*pago", QRegularExpression::CaseInsensitiveOption), "retail"});
+    m_rules.append({QRegularExpression("pc\\s*Factory|falabella|ripley|paris|la\\s*polar|hites|abcdin|sodimac|homecenter|easy|construmart|imperial|corona|ikea|amazon|mercadolibre|merpago|mercado\\s*pago", QRegularExpression::CaseInsensitiveOption), "retail"});
 
     // --- Vestimenta ---
     m_rules.append({QRegularExpression("\\bzara\\b|h&m|forever\\s*21|\\bnike\\b|\\badidas\\b|\\bpuma\\b|\\bbata\\b|hush\\s*puppies|tricot|fashion", QRegularExpression::CaseInsensitiveOption), "clothes"});

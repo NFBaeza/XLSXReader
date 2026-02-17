@@ -7,9 +7,9 @@ int main(int argc, char *argv[]) {
     //auto bank = BankFactory::create(BankFactory::BankType::BICE, "debit");
 
     // Opción 2: 
-    auto bank = BankFactory::create("Santander", "debit");
+    auto bank = BankFactory::create("Wise", "debit");
     //se recomenda el uso de ruta global
-    const QString filePathGlobal ="../files/Cartola de cuenta Corriente - Febrero 2022.xlsx"; 
+    const QString filePathGlobal ="../files/transaction-history.csv"; 
 
     if (bank) {
         bank->readBankMovements(filePathGlobal);

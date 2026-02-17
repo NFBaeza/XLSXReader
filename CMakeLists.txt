@@ -30,6 +30,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(SOURCES
     src/banks/biceBank.cpp
     src/banks/santanderBank.cpp
+    src/banks/wiseBank.cpp
     src/bank.cpp
     src/bankFactory.cpp
     src/simpleClassifier.cpp
@@ -40,6 +41,7 @@ set(HEADERS
     include/simpleClassifier.h
     include/banks/biceBank.h
     include/banks/santanderBank.h
+    include/banks/wiseBank.h
     include/bank.h
     include/bankFactory.h 
 )
