@@ -11,6 +11,7 @@ public:
         BICE,
         SANTANDER,
         WISE,
+        ESTADO,
         UNKNOWN
     };
 

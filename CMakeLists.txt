@@ -34,6 +34,7 @@ set(SOURCES
     src/bank.cpp
     src/bankFactory.cpp
     src/simpleClassifier.cpp
+    src/banks/estadoBank.cpp
 )
 
 # Header files
@@ -42,6 +43,7 @@ set(HEADERS
     include/banks/biceBank.h
     include/banks/santanderBank.h
     include/banks/wiseBank.h
+    include/banks/estadoBank.h
     include/bank.h
     include/bankFactory.h 
 )

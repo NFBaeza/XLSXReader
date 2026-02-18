@@ -27,7 +27,6 @@ bool SantanderBank::readBankMovements() {
     }
 
     QString year = yearMatch.captured(1);
-    qDebug()<<"año encontrada: "<< year;
 
     int row = 22;
     while(true){
