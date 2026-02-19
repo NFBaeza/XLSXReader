@@ -27,7 +27,7 @@ QList<Bank::Transaction> BiceBank::readBankMovements(const QString& filePath) {
             QString fullDescription = xlsx.read(row, 5).toString();
             if (!fullDescription.isEmpty()) {
                 Transaction t;
-                t.date = castQDateTime(fullDescription).toString("yyyy-MM-dd hh:mm:ss");
+                t.date = castQDateTime(fullDescription).toString("yyyy-MM-dd");
                 t.category = m_classifier.classify(fullDescription);
                 t.description = fullDescription;
                 t.description.remove(QRegularExpression("\\s*(el\\s*)?\\d{1,2}/\\d{1,2}/\\d{4}"));
@@ -67,7 +67,7 @@ bool BiceBank::readBankMovements() {
             QString fullDescription = xlsx.read(row, 5).toString();
             if (!fullDescription.isEmpty()) {
                 Transaction t;
-                t.date = castQDateTime(fullDescription).toString("yyyy-MM-dd hh:mm:ss");
+                t.date = castQDateTime(fullDescription).toString("yyyy-MM-dd");
                 t.category = m_classifier.classify(fullDescription);
                 t.description = fullDescription;
                 t.description.remove(QRegularExpression("\\s*(el\\s*)?\\d{1,2}/\\d{1,2}/\\d{4}"));
@@ -78,7 +78,7 @@ bool BiceBank::readBankMovements() {
                 t.description.remove(QRegularExpression("[,\\s]+$"));
                 t.description = t.description.trimmed();
                 t.amount = xlsx.read(row, 6).toString().split("$")[1].replace(".","");
-                t.account = QString("%1 %2 card").arg(nameBank).arg(typeAccount);
+                t.account = QString("%1 %2").arg(nameBank).arg(typeAccount);
 
                 qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
                 transactions.append(t);
