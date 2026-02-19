@@ -10,9 +10,8 @@ public:
     SantanderBank(const QString& type);
     SantanderBank(const QString& type, const QString& filePath);
     ~SantanderBank() = default;
-
-    QList<Transaction> readBankMovements(const QString& filePath) override; 
-    bool readBankMovements() override;
+    bool readBankMovementsDebit(const QString& filePath) override;
+    bool readBankMovementsCredit(const QString& filePath) override;
 };
 
 #endif // BICEBANK_H

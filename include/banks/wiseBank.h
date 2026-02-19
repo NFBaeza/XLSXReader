@@ -11,8 +11,8 @@ public:
     WiseBank(const QString& type);
     WiseBank(const QString& type, const QString& filePath);
     ~WiseBank() = default;
-    QList<Transaction> readBankMovements(const QString& filePath) override;
-    bool readBankMovements() override;
+    bool readBankMovementsDebit(const QString& filePath) override;
+    bool readBankMovementsCredit(const QString& filePath) override;
 };
 
 #endif // WISEBANK_H

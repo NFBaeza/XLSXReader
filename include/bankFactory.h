@@ -12,6 +12,7 @@ public:
         SANTANDER,
         WISE,
         ESTADO,
+        CHILE,
         UNKNOWN
     };
 

@@ -1,6 +1,7 @@
 #include "bankFactory.h"
 #include "banks/biceBank.h"
 #include "banks/santanderBank.h" 
+#include "banks/chileBank.h" 
 #include "banks/wiseBank.h" 
 #include "banks/estadoBank.h" 
 
@@ -10,6 +11,7 @@ std::unique_ptr<Bank> BankFactory::create(BankType type, const QString& accountT
         case BankType::SANTANDER: return std::make_unique<SantanderBank>(accountType);
         case BankType::WISE:      return std::make_unique<WiseBank>(accountType);
         case BankType::ESTADO:    return std::make_unique<EstadoBank>(accountType);
+        case BankType::CHILE:     return std::make_unique<ChileBank>(accountType);
         case BankType::UNKNOWN:
             qDebug() << "Tipo de banco no soportado";
             return nullptr;
@@ -23,6 +25,7 @@ std::unique_ptr<Bank> BankFactory::create(const QString& bankName, const QString
         case BankType::SANTANDER: return std::make_unique<SantanderBank>(accountType, filePath);
         case BankType::WISE:      return std::make_unique<WiseBank>(accountType, filePath);
         case BankType::ESTADO:    return std::make_unique<EstadoBank>(accountType, filePath);
+        case BankType::CHILE:     return std::make_unique<ChileBank>(accountType, filePath);
         case BankType::UNKNOWN:
             qDebug() << "Banco no soportado:" << bankName;
             return nullptr;
@@ -40,6 +43,7 @@ BankFactory::BankType BankFactory::fromString(const QString& bankName) {
         {"SANTANDER", BankType::SANTANDER},
         {"WISE", BankType::WISE},
         {"ESTADO", BankType::ESTADO},
+        {"CHILE", BankType::CHILE},
     };
     return map.value(bankName.toUpper(), BankType::UNKNOWN);
 }

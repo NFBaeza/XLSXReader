@@ -9,19 +9,19 @@ void SimpleClassifier::initRules() {
     // Order matters: first match wins
 
     // --- Supermercados ---
-    m_rules.append({QRegularExpression("lider|walmart|unimarc|liquimax|laicao|Homecenter|hiper|(?<!ali)\\bexpress\\b|jumbo|tottus|(santa|sta)\\s*isabel|acuenta|esencia\\s*vegana|ekono|mayorista\\s*10", QRegularExpression::CaseInsensitiveOption), "groceries"});
+    m_rules.append({QRegularExpression("lider|walmart|unimarc|liquimax|laicao|santa\\*isabel|sta\\*isabel|homecenter|hiper|(?<!ali)\\bexpress\\b|jumbo|tottus|(santa|sta)\\s*isabel|acuenta|esencia\\s*vegana|ekono|mayorista\\s*10", QRegularExpression::CaseInsensitiveOption), "groceries"});
 
     // --- Farmacias ---
     m_rules.append({QRegularExpression("farmacias?\\s*(ahumada|cruz\\s*verde|salcobrand|knop|dr\\.?\\s*simi)|fasa|cruzverde", QRegularExpression::CaseInsensitiveOption), "drugstore"});
+
+    // --- Restaurantes / Comida ---
+    m_rules.append({QRegularExpression("uber\\s*eats|mcdonald|burger\\s*king|starbucks|papa\\s*john|domino|Dunkin|subway|kfc|juan\\s*maestro|tarragona|pizza|rappi|pedidos\\s*ya|uber\\s*eats|cornershop|ifood|doggis|restauran", QRegularExpression::CaseInsensitiveOption), "delivery/eating out"});
 
     // --- Transporte ---
     m_rules.append({QRegularExpression("efe|uber|cabify|didi|beat|Condor|tur\\s*bus|bip!?|metro\\s*s\\.?a|recarga\\s*bip", QRegularExpression::CaseInsensitiveOption), "transport"});
 
     // --- Combustible ---
     m_rules.append({QRegularExpression("copec|shell|petrobras|enex|gasolinera|combustible|estacion\\s*de\\s*servicio", QRegularExpression::CaseInsensitiveOption), "gas"});
-
-    // --- Restaurantes / Comida ---
-    m_rules.append({QRegularExpression("mcdonald|burger\\s*king|starbucks|papa\\s*john|domino|Dunkin|subway|kfc|juan\\s*maestro|tarragona|pizza|rappi|pedidos\\s*ya|uber\\s*eats|cornershop|ifood|doggis|restauran", QRegularExpression::CaseInsensitiveOption), "delivery/eating out"});
 
     // --- Servicios basicos ---
     m_rules.append({QRegularExpression("enel|chilquinta|cge|aguas\\s*andinas|esval|essbio|entel|movistar|Telefónica|claro|wom|vtr|mundo\\s*pacifico|gtd|telsur|metrogas|gas\\s*natural|lipigas|abastible", QRegularExpression::CaseInsensitiveOption), "utilities"});
@@ -39,10 +39,10 @@ void SimpleClassifier::initRules() {
     m_rules.append({QRegularExpression("aliexpress|alibaba|\\btemu\\b|\\bshein\\b|\\bwish\\b|banggood|gearbest|dhgate", QRegularExpression::CaseInsensitiveOption), "online shopping"});
 
     // --- Retail / Tiendas ---
-    m_rules.append({QRegularExpression("pc\\s*Factory|falabella|ripley|paris|la\\s*polar|hites|abcdin|sodimac|homecenter|easy|construmart|imperial|corona|ikea|amazon|mercadolibre|merpago|mercado\\s*pago", QRegularExpression::CaseInsensitiveOption), "retail"});
+    m_rules.append({QRegularExpression("rosen|DECATHLON|hym|pc\\s*Factory|falabella|ripley|paris|la\\s*polar|hites|abcdin|sodimac|homecenter|easy|construmart|imperial|corona|ikea|amazon|mercadolibre|merpago|mercado\\s*pago", QRegularExpression::CaseInsensitiveOption), "retail"});
 
     // --- Vestimenta ---
-    m_rules.append({QRegularExpression("\\bzara\\b|h&m|forever\\s*21|\\bnike\\b|\\badidas\\b|\\bpuma\\b|\\bbata\\b|hush\\s*puppies|tricot|fashion", QRegularExpression::CaseInsensitiveOption), "clothes"});
+    m_rules.append({QRegularExpression("flores|\\bzara\\b|h&m|forever\\s*21|\\bnike\\b|\\badidas\\b|\\bpuma\\b|\\bbata\\b|hush\\s*puppies|tricot|fashion", QRegularExpression::CaseInsensitiveOption), "clothes"});
 
     // --- Seguros ---
     m_rules.append({QRegularExpression("seguro|mapfre|liberty|bci\\s*seguros|chilena\\s*consolidada|metlife|zurich|hdi", QRegularExpression::CaseInsensitiveOption), "insurance"});
@@ -57,10 +57,13 @@ void SimpleClassifier::initRules() {
     m_rules.append({QRegularExpression("giro.*cajero|cajero\\s*autom[aá]tico|atm|redbanc", QRegularExpression::CaseInsensitiveOption), "withdraw cash"});
 
     // --- Comisiones ---
-    m_rules.append({QRegularExpression("comisi[oó]n|comisiones|cargo\\s*mantenci[oó]n|costo\\s*mantenci[oó]n", QRegularExpression::CaseInsensitiveOption), "bank comission"});
+    m_rules.append({QRegularExpression("comisi[oó]n|comisiones|amortizacion|impuesto|inter[eé]ses|cargo\\s*mantenci[oó]n|costo\\s*mantenci[oó]n", QRegularExpression::CaseInsensitiveOption), "bank comission"});
 
     // --- Sueldo / Remuneraciones ---
     m_rules.append({QRegularExpression("sueldo|remuneraci[oó]n|honorario|n[oó]mina|liquidaci[oó]n\\s*sueldo|proveedor", QRegularExpression::CaseInsensitiveOption), "paycheck"});
+
+     // --- Inversiones ---
+    m_rules.append({QRegularExpression("inversi[oón]\\es", QRegularExpression::CaseInsensitiveOption), "deposit"});
 
     // --- Abono / Deposito generico ---
     m_rules.append({QRegularExpression("abono|dep[oó]sito|devoluci[oó]n|reembolso", QRegularExpression::CaseInsensitiveOption), "deposit"});

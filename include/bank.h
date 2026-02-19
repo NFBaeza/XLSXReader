@@ -42,8 +42,9 @@
         QString filePath;
         QList<Transaction> transactions;
         void printBankFile(const QString& filePath);
-        virtual QList<Transaction> readBankMovements(const QString& filePath) = 0;
-        virtual bool readBankMovements() = 0;
+        QList<Transaction> readBankMovements(const QString& filePath);
+        virtual bool readBankMovementsCredit(const QString& filePath) = 0;
+        virtual bool readBankMovementsDebit(const QString& filePath) = 0;
 
 };
 

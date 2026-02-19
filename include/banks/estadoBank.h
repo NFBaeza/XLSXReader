@@ -11,8 +11,8 @@ public:
     EstadoBank(const QString& type);
     EstadoBank(const QString& type, const QString& filePath);
     ~EstadoBank() = default;
-    QList<Transaction> readBankMovements(const QString& filePath) override;
-    bool readBankMovements() override;
+    bool readBankMovementsDebit(const QString& filePath) override;
+    bool readBankMovementsCredit(const QString& filePath) override;
 };
 
 #endif // ESTADOBANK_H

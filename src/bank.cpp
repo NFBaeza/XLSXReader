@@ -55,6 +55,15 @@ void Bank::printBankFile() {
     return;
 }
 
+QList<Bank::Transaction> Bank::readBankMovements(const QString& filePath) {
+    if(Bank::typeAccount.trimmed().toLower() == "debit"){
+        readBankMovementsDebit(filePath);
+    }else{
+        readBankMovementsCredit(filePath);
+    }
+    return Bank::transactions;
+}
+
 QDateTime Bank::castQDateTime(const QString& dateString){
     QRegularExpression dateRegex("(\\d{1,2}/\\d{1,2}/\\d{4})");
     QRegularExpressionMatch dateMatch = dateRegex.match(dateString);
