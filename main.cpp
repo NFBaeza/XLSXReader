@@ -7,9 +7,9 @@ int main(int argc, char *argv[]) {
     //auto bank = BankFactory::create(BankFactory::BankType::BICE, "debit");
 
     // Opción 2: 
-    auto bank = BankFactory::create("chile", "credit");
+    auto bank = BankFactory::create("bice", "debit");
     //se recomenda el uso de ruta global
-    const QString filePathGlobal ="files/Mov_Facturado.xls"; 
+    const QString filePathGlobal ="files/Cartola.xlsx"; 
 
     if (bank) {
         bank->readBankMovements(filePathGlobal);

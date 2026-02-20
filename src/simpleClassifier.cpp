@@ -9,7 +9,7 @@ void SimpleClassifier::initRules() {
     // Order matters: first match wins
 
     // --- Supermercados ---
-    m_rules.append({QRegularExpression("lider|walmart|unimarc|liquimax|laicao|santa\\*isabel|sta\\*isabel|homecenter|hiper|(?<!ali)\\bexpress\\b|jumbo|tottus|(santa|sta)\\s*isabel|acuenta|esencia\\s*vegana|ekono|mayorista\\s*10", QRegularExpression::CaseInsensitiveOption), "groceries"});
+    m_rules.append({QRegularExpression("lider|walmart|unimarc|liquimax|laicao|santa\\*isabel|sta\\*isabel|homecenter|hiper|(?<!ali)\\bexpress\\b|jumbo|tottus|(santa|sta)\\s*isabel|esencia\\s*vegana|ekono|mayorista\\s*10", QRegularExpression::CaseInsensitiveOption), "groceries"});
 
     // --- Farmacias ---
     m_rules.append({QRegularExpression("farmacias?\\s*(ahumada|cruz\\s*verde|salcobrand|knop|dr\\.?\\s*simi)|fasa|cruzverde", QRegularExpression::CaseInsensitiveOption), "drugstore"});
@@ -47,6 +47,9 @@ void SimpleClassifier::initRules() {
     // --- Seguros ---
     m_rules.append({QRegularExpression("seguro|mapfre|liberty|bci\\s*seguros|chilena\\s*consolidada|metlife|zurich|hdi", QRegularExpression::CaseInsensitiveOption), "insurance"});
 
+    // --- Abono / Deposito generico ---
+    m_rules.append({QRegularExpression("abono|dep[oó]sito|devoluci[oó]n|reembolso", QRegularExpression::CaseInsensitiveOption), "deposit"});
+
     // --- Transferencias ---
     m_rules.append({QRegularExpression("transf|transferencia", QRegularExpression::CaseInsensitiveOption), "bank transfer"});
 
@@ -63,10 +66,7 @@ void SimpleClassifier::initRules() {
     m_rules.append({QRegularExpression("sueldo|remuneraci[oó]n|honorario|n[oó]mina|liquidaci[oó]n\\s*sueldo|proveedor", QRegularExpression::CaseInsensitiveOption), "paycheck"});
 
      // --- Inversiones ---
-    m_rules.append({QRegularExpression("inversi[oón]\\es", QRegularExpression::CaseInsensitiveOption), "deposit"});
-
-    // --- Abono / Deposito generico ---
-    m_rules.append({QRegularExpression("abono|dep[oó]sito|devoluci[oó]n|reembolso", QRegularExpression::CaseInsensitiveOption), "deposit"});
+    m_rules.append({QRegularExpression("inversi[oón]\\es", QRegularExpression::CaseInsensitiveOption), "investment"});
 
     // --- Pago en linea ---
     m_rules.append({QRegularExpression("pago\\s*en\\s*linea|pago.*internet|webpay|servipag|sencillito|caja\\s*vecina", QRegularExpression::CaseInsensitiveOption), "online payment"});
