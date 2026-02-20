@@ -38,7 +38,7 @@ bool EstadoBank::readBankMovementsDebit(const QString& filePath){
             QString date = QString("%1/%2").arg(monthString).arg(year);
             QDate monthNumber = locale.toDate(date, "dd/MMM/yyyy");
 
-            t.date = QString("%1/%2/%3").arg(xlsx.read(row,1).toString().split("/")[0]).arg(monthNumber.toString("MM")).arg(year);
+            t.date = QString("%3-%2-%1").arg(xlsx.read(row,1).toString().split("/")[0]).arg(monthNumber.toString("MM")).arg(year);
             t.description= xlsx.read(row, 3).toString();
 
             t.description = t.description.trimmed();
