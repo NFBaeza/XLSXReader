@@ -52,7 +52,7 @@ bool BiceBank::readBankMovementsDebit(const QString& filePath) {
                     QString hour = fullMatch[1].trimmed();
                     QString date = fullMatch[0].split("el")[1].trimmed();
                     QString dateFormat = QString("%1 %2").arg(date).arg(hour);
-                    t.date = castQDateTime(dateFormat).toString("dd/MM/yyyy HH:mm");
+                    t.date = castQDateTime(dateFormat).toString("yyyy-MM-dd HH:mm");
 
                 }else if(isDateDividedByLineOnDescription.hasMatch()){
                     QStringList fullMatch = isDateDividedByLineOnDescription.captured(0).split("a las");
@@ -61,14 +61,14 @@ bool BiceBank::readBankMovementsDebit(const QString& filePath) {
                     QString date = fullMatch[0].split("el")[1].trimmed();
                     QStringList dateByPieces = date.split("-");
                     QString dateFormat = QString("%1/%2/%3 %4").arg(dateByPieces[2]).arg(dateByPieces[1]).arg(dateByPieces[0]).arg(hour);
-                    t.date = castQDateTime(dateFormat).toString("dd/MM/yyyy HH:mm");
+                    t.date = castQDateTime(dateFormat).toString("yyyy-MM-dd HH:mm");
 
                 }else{              
                     QString dateFormat = xlsx.read(row, 2).toString().replace(" ","/");
                     QStringList dateMonthFormat = dateFormat.split("/");
                     dateFormat = QString("%1/%2/%3").arg(dateMonthFormat[0]).arg(dateFormat.split("/")[1].toUpper()).arg(dateMonthFormat[2]);
                     QDate monthNumber = locale.toDate(dateFormat, "d/MMM/yyyy");
-                    t.date = QString("%1/%2/%3").arg(dateFormat.split("/")[0]).arg(monthNumber.toString("MM")).arg(dateFormat.split("/")[2]);
+                    t.date = QString("%3-%2-%1").arg(dateFormat.split("/")[0]).arg(monthNumber.toString("MM")).arg(dateFormat.split("/")[2]);
                 }
 
                 t.category = m_classifier.classify(fullDescription);
