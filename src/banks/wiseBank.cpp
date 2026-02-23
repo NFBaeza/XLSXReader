@@ -29,7 +29,9 @@ bool WiseBank::readBankMovementsDebit(const QString& filePath){
         Transaction t;
 
         QStringList row = stream.readLine().split(",");
-        t.date = row[3].remove("\"");
+        QString rawDate = row[3].remove("\"").trimmed();
+        QDateTime dt = QDateTime::fromString(rawDate, "yyyy-MM-dd HH:mm:ss");
+        t.date = dt.toString("yyyy-MM-dd HH:mm:ss");
         
         t.description = row[12].remove("\"");
         t.category = m_classifier.classify(t.description);
@@ -37,8 +39,10 @@ bool WiseBank::readBankMovementsDebit(const QString& filePath){
         t.amount = (row[14] == "CLP") ? row[13] : "0";
         t.account = QString("%1 %2").arg(nameBank).arg(typeAccount);
 
-        qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
-        Bank::transactions.append(t);
+        if(t.amount != "0"){
+            qDebug() << "Transaction" << t.date << t.category << t.description << t.amount;
+            Bank::transactions.append(t);
+        }
             
     }
     return true;
