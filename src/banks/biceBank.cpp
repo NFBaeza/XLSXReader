@@ -27,7 +27,7 @@ bool BiceBank::readBankMovementsDebit(const QString& filePath) {
     QString fullDescription;
     while(true){
         QString checkEndRows = xlsx.read(row, 2).toString();
-        if(checkEndRows.trimmed().isEmpty()){
+        if(checkEndRows.trimmed().isEmpty() || checkEndRows.contains("00:00")){
             return true;
         } else {
             Transaction t;
