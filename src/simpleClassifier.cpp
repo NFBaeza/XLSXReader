@@ -66,7 +66,7 @@ void SimpleClassifier::initRules() {
     m_rules.append({QRegularExpression("sueldo|remuneraci[oó]n|honorario|n[oó]mina|liquidaci[oó]n\\s*sueldo|proveedor", QRegularExpression::CaseInsensitiveOption), "paycheck"});
 
      // --- Inversiones ---
-    m_rules.append({QRegularExpression("inversi[oón]\\es", QRegularExpression::CaseInsensitiveOption), "investment"});
+    m_rules.append({QRegularExpression("inversi[oón]\\es|corredores", QRegularExpression::CaseInsensitiveOption), "investment"});
 
     // --- Pago en linea ---
     m_rules.append({QRegularExpression("pago\\s*en\\s*linea|pago.*internet|webpay|servipag|sencillito|caja\\s*vecina", QRegularExpression::CaseInsensitiveOption), "online payment"});
